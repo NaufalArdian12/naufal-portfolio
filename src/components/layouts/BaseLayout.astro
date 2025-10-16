@@ -1,0 +1,19 @@
+---
+import Navbar from './Navbar.astro'
+import Footer from './Footer.astro'
+import '../../styles/global.css'
+const { title = 'Naufal Ardian — Technology Enthusiast', description = 'Tech enthusiast & lifelong learner.' } = Astro.props
+---
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+  </head>
+  <body class="bg-[#F9FAFB] text-gray-900 font-sans antialiased">
+    <Navbar />
+    <slot />
+    <Footer />
+  </body>
+</html>

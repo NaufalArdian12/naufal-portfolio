@@ -1,0 +1,165 @@
+<nav
+  id="site-nav"
+  class="inset-x-0 top-0 z-50 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60
+         translate-y-[-100%] opacity-0
+         transition-transform duration-700 ease-out
+         data-[show=true]:translate-y-0 data-[show=true]:opacity-100
+         fixed"
+>
+  <div class="flex justify-between items-center py-4 px-4 md:px-20 text-xl">
+    <!-- Left: Brand + Desktop Links -->
+    <div class="flex items-center gap-[3rem] md:gap-[7rem]">
+      <a
+        href="/"
+        class="italic font-semibold text-5xl font-['Instrument_Serif']"
+        >Nopal.</a
+      >
+
+      <!-- Desktop links (unchanged) -->
+      <div class="hidden md:flex gap-8 text-gray-600">
+        <a class="hover:text-[#0048BF]" href="#about">About</a>
+        <a class="hover:text-[#0048BF]" href="#project">Project</a>
+        <a class="hover:text-[#0048BF]" href="#experience">Experience</a>
+        <a class="hover:text-[#0048BF]" href="#service">Service</a>
+      </div>
+    </div>
+
+    <!-- Right: Email (desktop) + Hamburger (mobile) -->
+    <div class="flex items-center gap-3">
+      <!-- Desktop email (unchanged) -->
+      <a
+        href="mailto:naufalportofolio12@gmail.com"
+        class="underline hover:text-[#0048BF] hidden md:inline-block"
+      >
+        naufalportofolio12@gmail.com
+      </a>
+
+      <!-- Mobile hamburger -->
+      <button
+        id="nav-toggle"
+        class="md:hidden inline-flex items-center justify-center rounded-xl border border-black/10 px-3 py-2
+               hover:bg-black/5 active:scale-[0.98] transition"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        type="button"
+      >
+        <!-- icon -->
+        <svg
+          id="icon-open"
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M3 6h18M3 12h18M3 18h18"></path>
+        </svg>
+        <svg
+          id="icon-close"
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6 hidden"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile dropdown panel -->
+  <div
+    id="mobile-menu"
+    class="md:hidden overflow-hidden border-t border-black/10
+           max-h-0 opacity-0
+           transition-[max-height,opacity] duration-300 ease-out"
+    data-open="false"
+  >
+    <div class="px-6 py-4 flex flex-col gap-3 text-lg">
+      <a class="py-2 hover:text-[#0048BF]" href="#about">About</a>
+      <a class="py-2 hover:text-[#0048BF]" href="#project">Project</a>
+      <a class="py-2 hover:text-[#0048BF]" href="#experience">Experience</a>
+      <a class="py-2 hover:text-[#0048BF]" href="#service">Service</a>
+
+      <!-- Mobile email -->
+      <a
+        href="mailto:naufalportofolio12@gmail.com"
+        class="mt-2 underline hover:text-[#0048BF]"
+      >
+        naufalportofolio12@gmail.com
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Slide down on load (tetap)
+  window.addEventListener("DOMContentLoaded", () => {
+    const nav = document.getElementById("site-nav") as HTMLElement | null;
+    if (nav) {
+      requestAnimationFrame(() => nav.setAttribute("data-show", "true"));
+      const navH = nav.offsetHeight || 0;
+      document.documentElement.style.scrollPaddingTop = navH + "px";
+    }
+
+    // Toggle mobile menu (TS-safe)
+    const btn = document.getElementById("nav-toggle") as HTMLButtonElement | null;
+    const menu = document.getElementById("mobile-menu") as HTMLElement | null;
+    const iconOpen = document.getElementById("icon-open") as SVGSVGElement | null;
+    const iconClose = document.getElementById("icon-close") as SVGSVGElement | null;
+
+    // kalau salah satu nggak ada, ya udahan biar TS senang
+    if (!btn || !menu || !iconOpen || !iconClose) return;
+
+    const inner = menu.firstElementChild as HTMLElement | null;
+
+    const openMenu = () => {
+      const target = inner ? inner.scrollHeight : 240;
+      menu.style.maxHeight = target + "px";
+      menu.style.opacity = "1";
+      menu.setAttribute("data-open", "true");
+      btn.setAttribute("aria-expanded", "true");
+      iconOpen.classList.add("hidden");
+      iconClose.classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+    };
+
+    const closeMenu = () => {
+      menu.style.maxHeight = "0px";
+      menu.style.opacity = "0";
+      menu.setAttribute("data-open", "false");
+      btn.setAttribute("aria-expanded", "false");
+      iconOpen.classList.remove("hidden");
+      iconClose.classList.add("hidden");
+      document.body.style.overflow = "";
+    };
+
+    btn.addEventListener("click", () => {
+      const isOpen = menu.getAttribute("data-open") === "true";
+      isOpen ? closeMenu() : openMenu();
+    });   
+
+    // Tutup otomatis saat resize ke desktop
+    window.addEventListener("resize", () => {
+      if (window.matchMedia("(min-width: 768px)").matches) {
+        closeMenu();
+      }
+    });
+
+    // Tutup saat klik link di panel
+    menu.querySelectorAll("a").forEach((a) => {
+      a.addEventListener("click", closeMenu);
+    });
+  });
+</script>
+

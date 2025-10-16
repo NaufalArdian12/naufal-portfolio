@@ -1,0 +1,119 @@
+---
+import StatCard from "../ui/Statcard.astro";
+---
+
+<section
+  id="about"
+  class="px-4 md:px-16 py-24 md:py-16 flex flex-col justify-center items-center max-w-3xl mx-auto"
+>
+  <!-- Title -->
+  <span
+    data-anim="title"
+    class="italic mb-6 self-start font-['Instrument_Serif']
+           text-4xl md:text-5xl"
+  >
+    About
+  </span>
+
+  <!-- Paragraphs -->
+  <div
+    class="text-justify max-w-3xl font-['Instrument_Serif'] font-[400]
+           text-2xl md:text-4xl leading-relaxed md:leading-snug"
+  >
+    <p data-anim="para">
+      I’m a Tech Enthusiast with over 4 years of experience in UI/UX design and
+      a growing passion for web development, IoT, and AI. I enjoy turning ideas
+      into interactive and meaningful digital experiences that connect design
+      and technology.
+    </p>
+    <p class="mt-6 md:mt-10" data-anim="para">
+      Curious by nature, I love learning new tools, experimenting with code, and
+      building solutions that solve real-world problems. For me, technology
+      isn’t just about innovation — it’s about creating impact and making life
+      better, one project at a time.
+    </p>
+  </div>
+
+  <!-- Stats -->
+  <div
+    class="mt-10 grid grid-cols-3 gap-3 sm:gap-4 md:gap-6 w-full
+       font-['Instrument_Serif'] font-normal bg-white p-3 sm:p-6 shadow-lg rounded-lg"
+  >
+    <div data-anim="stat"><StatCard value="4+" label="Years Experience" /></div>
+    <div data-anim="stat"><StatCard value="14+" label="Project Done" /></div>
+    <div data-anim="stat"><StatCard value="10+" label="Happy Clients" /></div>
+  </div>
+</section>
+
+<!-- Animasi scroll-in (staggered) -->
+<script>
+  import { animate, inView, stagger } from "motion";
+
+  const D_TITLE = 1.4;
+  const D_PARAS = 1.2;
+  const D_STATS = 0.9;
+  const STAGGER_PARAS = 0.35;
+  const STAGGER_STATS = 0.2;
+  const DELAY_STATS = 400;
+  const EASE_SMOOTH = "cubic-bezier(.22,1,.36,1)";
+
+  inView(
+    "#about",
+    (aboutEl) => {
+      const root = aboutEl as HTMLElement;
+
+      const title = root.querySelector(
+        '[data-anim="title"]'
+      ) as HTMLElement | null;
+      const paras = root.querySelectorAll('[data-anim="para"]');
+      const stats = root.querySelectorAll('[data-anim="stat"]');
+
+      if (title) {
+        animate(
+          title,
+          {
+            opacity: [0, 1],
+            transform: ["translateY(14px)", "translateY(0)"],
+          } as any,
+          { duration: D_TITLE, easing: EASE_SMOOTH } as any
+        );
+      }
+
+      if (paras.length) {
+        animate(
+          paras,
+          {
+            opacity: [0, 1],
+            transform: ["translateY(12px)", "translateY(0)"],
+          } as any,
+          {
+            delay: stagger(STAGGER_PARAS),
+            duration: D_PARAS,
+            easing: EASE_SMOOTH,
+          } as any
+        );
+      }
+
+      if (stats.length) {
+        setTimeout(() => {
+          animate(
+            stats,
+            {
+              opacity: [0, 1],
+              transform: [
+                "translateY(18px) scale(0.97)",
+                "translateY(0) scale(1)",
+              ],
+            } as any,
+            {
+              delay: stagger(STAGGER_STATS),
+              duration: D_STATS,
+              easing: EASE_SMOOTH,
+            } as any
+          );
+        }, DELAY_STATS);
+      }
+    },
+    { margin: "-10% 0px" }
+  );
+</script>

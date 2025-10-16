@@ -1,0 +1,21 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "include": [
+    "src", "astro.config.*", "env.d.ts", "src/types/**/*.d.ts",
+    "**/*"
+  ],
+  "exclude": [
+    "dist"
+  ],
+  "compilerOptions": {
+    "strict": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js",
+    "noEmit": true,
+    "isolatedModules": true
+  }               
+}                                                             

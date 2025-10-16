@@ -1,0 +1,18 @@
+---
+const { value, label } = Astro.props;
+---
+
+<div class="min-w-0 flex flex-col items-start">
+  <span
+    class="italic text-blue-600 font-semibold leading-none
+               text-5xl sm:text-4xl md:text-5xl"
+  >
+    {value}
+  </span>
+  <span
+    class="font-sans text-gray-600 mt-1 leading-snug
+               text-xs sm:text-sm md:text-lg whitespace-nowrap"
+  >
+    {label}
+  </span>
+</div>
