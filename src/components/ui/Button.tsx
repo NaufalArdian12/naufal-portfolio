@@ -15,9 +15,6 @@ type ButtonProps = {
 export default function Button(props: ButtonProps) {
   const variant = () => props.variant ?? "primary";
 
-  // Mobile: text-sm, px-4 py-2.5
-  // ≥sm:    text-base, px-5 py-3
-  // ≥md:    text-xl (agar desktop-mu tetap sama)
   const base =
     "inline-flex items-center justify-center select-none " +
     "rounded-lg gap-2.5 font-medium transition " +
@@ -27,10 +24,8 @@ export default function Button(props: ButtonProps) {
 
   const styles = {
     primary:
-      // linear-gradient(180deg, #0048BF 0%, #4180E8 100%)
       "text-white border-0 " +
       "bg-[linear-gradient(180deg,#0048BF_0%,#4180E8_100%)] " +
-      // efek hover/scale dibatasi agar tidak terlalu heboh di mobile
       "md:hover:-translate-y-1 md:hover:scale-110 " +
       "transition duration-300 ease-in-out delay-150 " +
       "hover:brightness-95 active:brightness-[.9]",

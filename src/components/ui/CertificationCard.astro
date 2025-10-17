@@ -1,0 +1,55 @@
+---
+const { item } = Astro.props; // item = CollectionEntry<'certifications'>
+---
+
+<li
+  class="group flex h-full items-center gap-4 rounded-2xl bg-white border border-black/10
+         shadow-[0_1px_1px_rgba(0,0,0,.04),0_10px_24px_rgba(0,0,0,.06)]
+         px-4 py-3 md:px-5 md:py-4 transition hover:-translate-y-[2px]"
+>
+  <div
+    class={`shrink-0 grid place-items-center rounded-xl w-16 h-16 md:w-32 md:h-32 ${item.data.logoBg ?? ""} overflow-hidden`}
+  >
+    <img
+      src={item.data.logo}
+      alt={item.data.issuer}
+      class="w-12 h-12 md:w-24 md:h-24"
+    />
+  </div>
+
+  <div class="min-w-0">
+    <p class="font-['Instrument_Serif'] text-[1.25rem] md:text-[1.7rem]">
+      <span class="font-medium">{item.data.name}</span>
+    </p>
+    <span class="font-medium font-sm text-gray-500 font-['Instrument_Serif']">{item.data.issuer}</span>
+    <p class="text-gray-500 text-sm md:text-base font-['Inter'] mt-0.5">
+      Issued {item.data.issueDate}
+      {item.data.expireDate ? ` • Expires ${item.data.expireDate}` : ""}
+    </p>
+
+    {
+      item.data.skills && item.data.skills.length ? (
+        <div class="mt-2 flex flex-wrap gap-1.5">
+          {item.data.skills.slice(0, 3).map((s: string) => (
+            <span class="text-[10px] md:text-xs rounded-full border border-black/10 px-2 py-0.5">
+              {s}
+            </span>
+          ))}
+        </div>
+      ) : null
+    }
+
+    {
+      item.data.credentialUrl ? (
+        <a
+          href={item.data.credentialUrl}
+          target="_blank"
+          rel="noopener"
+          class="mt-2 inline-flex items-center gap-1 text-xs underline hover:text-[#0048BF]"
+        >
+          View credential
+        </a>
+      ) : null
+    }
+  </div>
+</li>
