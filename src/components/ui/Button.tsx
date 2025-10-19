@@ -1,4 +1,3 @@
-// src/components/ui/Button.tsx
 import type { JSX } from "solid-js";
 
 type ButtonProps = {
@@ -9,7 +8,7 @@ type ButtonProps = {
   disabled?: boolean;
   children?: JSX.Element;
   onClick?: (e: MouseEvent) => void;
-  class?: string; // optional override (baru, backward compatible)
+  class?: string;
 };
 
 export default function Button(props: ButtonProps) {

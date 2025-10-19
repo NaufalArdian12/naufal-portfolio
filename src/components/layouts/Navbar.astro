@@ -7,7 +7,6 @@
          fixed"
 >
   <div class="flex justify-between items-center py-4 px-4 md:px-20 text-xl">
-    <!-- Left: Brand + Desktop Links -->
     <div class="flex items-center gap-[3rem] md:gap-[7rem]">
       <a
         href="#top"
@@ -15,7 +14,6 @@
         >Nopal.</a
       >
 
-      <!-- Desktop links (unchanged) -->
       <div class="hidden md:flex gap-8 text-gray-600">
         <a class="hover:text-[#0048BF]" href="#about">About</a>
         <a class="hover:text-[#0048BF]" href="#project">Project</a>
@@ -24,9 +22,7 @@
       </div>
     </div>
 
-    <!-- Right: Email (desktop) + Hamburger (mobile) -->
     <div class="flex items-center gap-3">
-      <!-- Desktop email (unchanged) -->
       <a
         href="mailto:naufalportofolio12@gmail.com"
         class="underline hover:text-[#0048BF] hidden md:inline-block"
@@ -34,7 +30,6 @@
         naufalportofolio12@gmail.com
       </a>
 
-      <!-- Mobile hamburger -->
       <button
         id="nav-toggle"
         class="md:hidden inline-flex items-center justify-center rounded-xl border border-black/10 px-3 py-2
@@ -44,7 +39,6 @@
         aria-controls="mobile-menu"
         type="button"
       >
-        <!-- icon -->
         <svg
           id="icon-open"
           xmlns="http://www.w3.org/2000/svg"
@@ -77,7 +71,6 @@
     </div>
   </div>
 
-  <!-- Mobile dropdown panel -->
   <div
     id="mobile-menu"
     class="md:hidden overflow-hidden border-t border-black/10
@@ -91,7 +84,6 @@
       <a class="py-2 hover:text-[#0048BF]" href="#experience">Experience</a>
       <a class="py-2 hover:text-[#0048BF]" href="#certification">Certification</a>
 
-      <!-- Mobile email -->
       <a
         href="mailto:naufalportofolio12@gmail.com"
         class="mt-2 underline hover:text-[#0048BF]"
@@ -103,7 +95,6 @@
 </nav>
 
 <script>
-  // Slide down on load (tetap)
   window.addEventListener("DOMContentLoaded", () => {
     const nav = document.getElementById("site-nav") as HTMLElement | null;
     if (nav) {
@@ -112,13 +103,11 @@
       document.documentElement.style.scrollPaddingTop = navH + "px";
     }
 
-    // Toggle mobile menu (TS-safe)
     const btn = document.getElementById("nav-toggle") as HTMLButtonElement | null;
     const menu = document.getElementById("mobile-menu") as HTMLElement | null;
     const iconOpen = document.getElementById("icon-open") as SVGSVGElement | null;
     const iconClose = document.getElementById("icon-close") as SVGSVGElement | null;
 
-    // kalau salah satu nggak ada, ya udahan biar TS senang
     if (!btn || !menu || !iconOpen || !iconClose) return;
 
     const inner = menu.firstElementChild as HTMLElement | null;
@@ -149,14 +138,12 @@
       isOpen ? closeMenu() : openMenu();
     });   
 
-    // Tutup otomatis saat resize ke desktop
     window.addEventListener("resize", () => {
       if (window.matchMedia("(min-width: 768px)").matches) {
         closeMenu();
       }
     });
 
-    // Tutup saat klik link di panel
     menu.querySelectorAll("a").forEach((a) => {
       a.addEventListener("click", closeMenu);
     });

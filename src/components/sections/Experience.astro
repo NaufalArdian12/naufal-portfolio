@@ -1,5 +1,4 @@
 ---
-// src/components/sections/Experience.astro
 import { getCollection, type CollectionEntry } from "astro:content";
 
 const items = (await getCollection("experiences"))
@@ -11,18 +10,15 @@ const items = (await getCollection("experiences"))
 ---
 
 <section id="experience" class="px-4 md:px-20 py-20 scroll-mt-24 md:scroll-mt-32 max-w-3xl mx-auto">
-  <!-- pill kecil -->
   <div class="italic mb-6 self-start font-['Instrument_Serif']
            text-4xl md:text-5xl">
     Experience
   </div>
 
-  <!-- heading serif -->
   <h2 class="mt-3 font-['Instrument_Serif'] text-[clamp(1.75rem,3.2vw,2.5rem)] leading-tight">
     A Proven Track Record of Design Excellence
   </h2>
 
-  <!-- list kartu -->
   <ul class="mt-6 flex flex-col gap-3 md:gap-4 max-w-2xl">
     {items.map((entry: CollectionEntry<'experiences'>) => (
       <li
@@ -49,7 +45,6 @@ const items = (await getCollection("experiences"))
   </ul>
 </section>
 
-<!-- Animasi (tanpa opsi 'start' di stagger biar gak error) -->
 <script>
   import { animate, inView, stagger } from "motion";
   inView("#experience", (el) => {

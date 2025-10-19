@@ -1,17 +1,14 @@
 ---
 const { item } = Astro.props;
-/** item = { company, role, start, end, logo, logoBg } */
 ---
 <li
   class="group flex items-center gap-4 rounded-2xl bg-white shadow-[0_1px_1px_rgba(0,0,0,.04),0_10px_30px_rgba(0,0,0,.06)]
          px-4 py-3 md:px-5 md:py-4 transition hover:-translate-y-[2px]"
 >
-  <!-- Logo -->
   <div class={`shrink-0 grid place-items-center rounded-xl w-11 h-11 md:w-12 md:h-12 ${item.logoBg} overflow-hidden`}>
     <img src={item.logo} alt={item.company} class="w-7 h-7 md:w-7 md:h-7" />
   </div>
 
-  <!-- Texts -->
   <div class="min-w-0">
     <p class="font-['Instrument_Serif'] text-[1.05rem] md:text-[1.125rem]">
       <span class="font-medium"> {item.role} </span>
