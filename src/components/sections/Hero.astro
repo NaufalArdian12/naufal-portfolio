@@ -18,7 +18,6 @@ import Button from "../ui/Button.tsx";
     >
       <span
         class="inline-flex items-center justify-center md:justify-start gap-3 md:gap-0"
-        data-reveal
       >
         <span>Hi, I'm Naufal</span>
         <img
@@ -90,12 +89,13 @@ import Button from "../ui/Button.tsx";
   </div>
 </section>
 
-<!-- Script: aman untuk Astro + TS, jalan di client -->
 <script>
-  import { animate } from "motion";
+  import { animate, anticipate } from "motion";
 
   const title = document.getElementById("hero-title");
-  if (title) {
+
+  const runHeroAnim = () => {
+    if (!title) return;
     animate(
       title,
       {
@@ -104,5 +104,15 @@ import Button from "../ui/Button.tsx";
       } as any,
       { duration: 0.9, easing: "ease-in-out" } as any
     );
-  }
+  };
+
+  // Nunggu overlay selesai → baru animasi hero
+  const observer = new MutationObserver(() => {
+    if (document.documentElement.classList.contains("revealed")) {
+      runHeroAnim();
+      observer.disconnect();
+    }
+  });
+
+  observer.observe(document.documentElement, { attributes: true });
 </script>

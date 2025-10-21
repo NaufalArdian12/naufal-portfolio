@@ -1,3 +1,4 @@
 @import "tailwindcss";
 @import "@fontsource-variable/inter/index.css";
 @import "@fontsource/instrument-serif/index.css";
+@import "./reveal.css"

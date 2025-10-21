@@ -1,0 +1,26 @@
+/* dasar: elemen yg akan muncul setelah overlay (pakai kelas/atribut di markup) */
+[data-reveal],
+.reveal-from-bottom {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 500ms ease,
+    transform 600ms ease;
+}
+
+/* ketika overlay selesai & <html> diberi class .revealed */
+html.revealed [data-reveal],
+html.revealed .reveal-from-bottom {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger via variabel */
+[data-reveal] {
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+/* Tambahan util: spin (kalau belum ada dari Tailwind) */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

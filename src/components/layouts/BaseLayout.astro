@@ -4,6 +4,8 @@ import Footer from "./Footer.astro";
 import "../../styles/global.css";
 import Experience from "../sections/Experience.astro";
 import Certifications from "../sections/Certifications.astro";
+import IntroReveal from "../IntroReveal.tsx";
+
 const {
   title = "Naufal Ardian — Technology Enthusiast",
   description = "Tech enthusiast & lifelong learner.",
@@ -37,10 +39,9 @@ const {
     <meta name="description" content={description} />
   </head>
   <body class="bg-[#F9FAFB] text-gray-900 font-sans antialiased">
+    <IntroReveal client:load />
     <Navbar />
     <slot />
-    <Experience />
-    <Certifications />
     <Footer />
   </body>
 </html>
