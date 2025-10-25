@@ -44,6 +44,11 @@ const items = (await getCollection('projects'))
               Repo
             </a>
           )}
+          {entry.data.figmaUrl && (
+            <a class="text-sm underline" href={entry.data.figmaUrl} target="_blank" rel="noopener">
+              Figma
+            </a>
+          )}
         </div>
       </article>
     ))}
