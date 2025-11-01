@@ -1,3 +1,4 @@
+/** @jsxImportSource solid-js */
 import { Show, createSignal, onCleanup, onMount } from "solid-js";
 
 export default function IntroReveal() {
@@ -33,13 +34,28 @@ export default function IntroReveal() {
     rafId = requestAnimationFrame(step);
   };
 
+  const unlockPage = () => {
+    try {
+      sessionStorage.setItem("introSeen", "1");
+    } catch (_) {}
+    document.documentElement.removeAttribute("data-intro");
+  };
+
   const finish = () => {
     const overlay = document.getElementById("intro-overlay");
-    if (!overlay) return;
+    if (!overlay) {
+      unlockPage();
+      setMounted(false);
+      return;
+    }
     overlay.addEventListener(
       "transitionend",
       () => {
+        unlockPage();
         setMounted(false);
+        // Hapus node anchor supaya bersih
+        const root = document.getElementById("intro-root");
+        if (root) root.remove();
       },
       { once: true }
     );
@@ -82,7 +98,7 @@ export default function IntroReveal() {
             "radial-gradient(1200px 600px at 50% -10%, rgba(0,0,0,0.06), transparent 60%), linear-gradient(180deg, #F9FAFB 0%, #F3F4F6 100%)",
         }}
       >
-        <div class="relative w-[min(92vw,28rem)] rounded-3xl border border-black/10 bg-white/70 backdrop-blur-xl shadow-[0_1px_1px_rgba(0,0,0,.06),0_24px_64px_rgba(0,0,0,.10)] p-6 flex flex-col items-center gap-5">
+        <div class="relative w-[min(92vw,28rem)] rounded-3xl border border-black/10 bg-white/70 backdrop-blur-xl shadow-[0_1px_1px_rgba(0,0,0,.10),0_24px_64px_rgba(0,0,0,.16)] p-6 flex flex-col items-center gap-5">
           <div class="w-16 h-16 rounded-2xl border border-black/10 grid place-items-center">
             <div
               class="w-8 h-8 rounded-full border-4 border-neutral-300 border-t-transparent animate-spin"

@@ -2,9 +2,7 @@
 import Navbar from "./Navbar.astro";
 import Footer from "./Footer.astro";
 import "../../styles/global.css";
-import Experience from "../sections/Experience.astro";
-import Certifications from "../sections/Certifications.astro";
-import IntroReveal from "../IntroReveal.tsx";
+import IntroReveal from "../IntroReveal.solid.tsx";
 
 const {
   title = "Naufal Ardian — Technology Enthusiast",
@@ -16,30 +14,35 @@ const {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" href="/favicon_io/favicon.ico"/>
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="/favicon_io/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="/favicon_io/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="/favicon_io/favicon-16x16.png"
-    />
+    <link rel="icon" href="/favicon_io/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png" />
     <link rel="manifest" href="/favicon_io/site.webmanifest" />
     <title>{title}</title>
     <meta name="description" content={description} />
+
+    <script is:inline>
+      (function () {
+        try {
+          var seen = sessionStorage.getItem('introSeen') === '1';
+          if (!seen) document.documentElement.dataset.intro = 'on';
+        } catch (_) {}
+      })();
+    </script>
+
+    <style is:inline>
+      html[data-intro="on"] body { overflow: hidden; }
+      html[data-intro="on"] body > :not(#intro-root) { visibility: hidden; }
+      html[data-intro="on"] { scroll-behavior: auto; }
+    </style>
   </head>
+
   <body class="bg-[#F9FAFB] text-gray-900 font-sans antialiased">
-    <IntroReveal client:load />
+    <div id="intro-root">
+      <IntroReveal client:load />
+    </div>
+
     <Navbar />
     <slot />
     <Footer />

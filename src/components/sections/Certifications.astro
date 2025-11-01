@@ -7,7 +7,7 @@ const items = (await getCollection("certifications"))
   .sort((a: CollectionEntry<'certifications'>, b: CollectionEntry<'certifications'>) => (b.data.order ?? 0) - (a.data.order ?? 0));
 ---
 
-<section id="certification" class="px-4 md:px-20 py-20 scroll-mt-24 md:scroll-mt-32">
+<section id="certifications" class="px-4 md:px-20 py-20 scroll-mt-24 md:scroll-mt-32">
   <div class="italic mb-6 self-start font-['Instrument_Serif']
            text-4xl md:text-5xl">
     Certifications
