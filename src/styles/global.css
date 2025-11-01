@@ -1,4 +1,17 @@
 @import "tailwindcss";
 @import "@fontsource-variable/inter/index.css";
 @import "@fontsource/instrument-serif/index.css";
-@import "./reveal.css"
+@import "./reveal.css";
+
+@keyframes rb-ripple {
+  from { transform: scale(0); opacity: .35; }
+  to   { transform: scale(2.2); opacity: 0; }
+}
+
+.rb-ripple {
+  position: absolute;
+  border-radius: 9999px;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.15);
+  animation: rb-ripple 600ms ease-out forwards;
+}

@@ -15,38 +15,38 @@ const projects = defineCollection({
     order: z.number().optional(),
     draft: z.boolean().default(false),
   }),
-})
+});
 
-  const experiences = defineCollection({
-  type: "content",
+const experiences = defineCollection({
+  type: 'content',
   schema: z.object({
     company: z.string(),
     role: z.string(),
     start: z.string(),
     end: z.string(),
-    logo: z.string(),         
+    logo: z.string(),
     logoBg: z.string().optional(),
     order: z.number().optional(),
     draft: z.boolean().default(false),
   }),
-})
+});
 
 const certifications = defineCollection({
   type: "content",
   schema: z.object({
-    name: z.string(),                 // nama sertifikat
-    issuer: z.string(),               // penerbit (Google, BNSP, Dicoding, dll.)
-    issueDate: z.string(),            // "June 2024"
-    expireDate: z.string().optional(),// opsional
+    name: z.string(),
+    issuer: z.string(),
+    issueDate: z.string(),
+    expireDate: z.string().optional(),
     credentialId: z.string().optional(),
     credentialUrl: z.string().url().optional(),
-    logo: z.string(),                 // /logos/certs/google.svg (public)
-    logoBg: z.string().optional(),    // tailwind bg-*
+    logo: z.string(),
+    logoBg: z.string().optional(),
+    certificate: z.string().optional(),
     skills: z.array(z.string()).optional(),
     order: z.number().optional(),
     draft: z.boolean().default(false),
   }),
 });
 
-export const collections = { projects }
-
+export const collections = { projects, experiences, certifications };
