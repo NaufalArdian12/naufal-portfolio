@@ -1,15 +1,14 @@
-// @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig } from 'astro/config'
+import react from '@astrojs/react'
+import solid from '@astrojs/solid-js'
+import mdx from '@astrojs/mdx'
+import tailwindcss from '@tailwindcss/vite'
 
-import solidJs from '@astrojs/solid-js';
-import tailwindcss from '@tailwindcss/vite';
-import mdx from '@astrojs/mdx';
-
-// https://astro.build/config
 export default defineConfig({
-  integrations: [solidJs(), mdx()],
-
-  vite: {
-    plugins: [tailwindcss()]
-  }
-});
+  integrations: [
+    react(),
+    solid({ include: ['**/*.solid.tsx', '**/*.solid.jsx'] }),
+    mdx(),
+  ],
+  vite: { plugins: [tailwindcss()] },
+})

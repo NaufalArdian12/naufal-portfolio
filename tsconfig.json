@@ -1,26 +1,28 @@
 {
   "extends": "astro/tsconfigs/strict",
   "include": [
-    "src", "astro.config.*", "env.d.ts", "src/types/**/*.d.ts",
+    "src",
+    "astro.config.*",
+    "env.d.ts",
+    "src/types/**/*.d.ts",
     "**/*"
   ],
-  "exclude": [
-    "dist"
-  ],
+  "exclude": ["dist"],
   "compilerOptions": {
     "strict": true,
     "target": "ESNext",
+    "lib": ["ESNext", "DOM"],
     "module": "ESNext",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "jsx": "preserve",
-    "jsxImportSource": "solid-js",
     "noEmit": true,
     "isolatedModules": true,
     "baseUrl": ".",
     "ignoreDeprecations": "6.0",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "lib": ["ES2021", "DOM"]
     }
   }
 }

@@ -15,11 +15,16 @@
     "@fontsource/inter": "^5.2.8",
     "@tailwindcss/vite": "^4.1.14",
     "motion": "^12.23.24",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
     "solid-js": "^1.9.9",
     "tailwindcss": "^4.1.14"
   },
   "devDependencies": {
     "@astrojs/mdx": "^4.3.7",
+    "@astrojs/react": "^4.4.1",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
     "astro": "^5.14.4"
   }
 }
